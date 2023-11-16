@@ -98,22 +98,20 @@ export default {
     this.getdata2()
   },
   components: {Topheader},
-  data() {
-    return {
-      headers: [
-        // {title: '合并', value: 'comb'},
-        {title: '昵称', value: 'cname'},
-        // {title: '图片', value: 'img'},
-        // {title: '类型', value: 'type'},
-        // {title: '所有者', value: 'owner'},
-        // {title: '结束时间', value: 'end_date'},
-        {title: '激活状态', value: 'active'},
-        {title: '操作', value: 'action', sortable: false},
-      ],
-      dataList: [],
-      dataListunbind: [],
-    };
-  },
+  data: () => ({
+    headers: [
+      // {title: '合并', value: 'comb'},
+      {title: '昵称', value: 'cname'},
+      // {title: '图片', value: 'img'},
+      // {title: '类型', value: 'type'},
+      // {title: '所有者', value: 'owner'},
+      // {title: '结束时间', value: 'end_date'},
+      {title: '激活状态', value: 'active'},
+      {title: '操作', value: 'action', sortable: false},
+    ],
+    dataList: [],
+    dataListunbind: [],
+  }),
   methods: {
     showColumn(header) {
       // 根据条件判断是否在手机端显示该列
@@ -151,7 +149,7 @@ export default {
     },
     viewDetails(item) {
       // 实现查看详情逻辑
-      this.$router.push({path: '/v1/bot/detail', query: {data: JSON.stringify(item)}});
+      this.$router.push({path: '/v1/bot/detail', query: {self_id: item["self_id"]}});
       console.log("查看详情", item);
     },
     online(item) {
