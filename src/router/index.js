@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/center',
     component: import('@/views/Center.vue'),
-  } ,
+  },
   {
     path: '/center/bot',
     component: import('@/views/v1/Bot.vue'),
@@ -38,6 +38,17 @@ const routes = [
   },
   {
     path: '/center/user',
+    component: import('@/views/v1/User.vue'),
+  },
+  {
+    path: '/v1/bot/detail',
+    component: import('@/views/v1/bot/detail.vue'),
+  },
+  {
+    path: '/v1/bot/detail',
+    component: import('@/views/v1/User.vue'),
+  }, {
+    path: '/v1/bot/detail',
     component: import('@/views/v1/User.vue'),
   },
 ]

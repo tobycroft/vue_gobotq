@@ -61,10 +61,10 @@ export default {
       headers: [
         // {title: '合并', value: 'comb'},
         {title: '昵称', value: 'cname'},
-        {title: '图片', value: 'img'},
-        {title: '类型', value: 'type'},
-        {title: '所有者', value: 'owner'},
-        {title: '结束时间', value: 'end_date'},
+        // {title: '图片', value: 'img'},
+        // {title: '类型', value: 'type'},
+        // {title: '所有者', value: 'owner'},
+        // {title: '结束时间', value: 'end_date'},
         {title: '激活状态', value: 'active'},
         {title: '操作', value: 'action', sortable: false},
       ],
@@ -81,7 +81,8 @@ export default {
       if (ret.isSuccess) {
         const list = ret.data
         list.forEach(function (data) {
-          data["end_date"] =moment(data["end_date"]).format("Y-M-D HH:mm:ss")
+          data["active"] = data["active"] === 1 ? "是" : "否"
+          data["end_date"] = moment(data["end_date"]).format("Y-M-D HH:mm:ss")
           data["comb"] = data["cname"] + "\n" + data["self_id"]
         })
         this.dataList = ret.data
@@ -93,6 +94,7 @@ export default {
     },
     viewDetails(item) {
       // 实现查看详情逻辑
+      this.$router.push({ path: '/v1/bot/detail', query: { data: JSON.stringify(item) } });
       console.log("查看详情", item);
     },
     online(item) {
