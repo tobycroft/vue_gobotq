@@ -8,6 +8,12 @@ class TokenModel {
     return {uid: localStorage.getItem("uid"), token: localStorage.getItem("token")}
   }
 
+
+  static Api_is_login() {
+    return localStorage.getItem("uid") != null && localStorage.getItem("token") != null
+  }
+
+
 }
 
 export default TokenModel
