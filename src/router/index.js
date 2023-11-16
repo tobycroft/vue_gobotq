@@ -19,6 +19,10 @@ const routes = [
   {
     path: '/user/login',
     component: import('@/views/user/Login.vue'),
+  } ,
+  {
+    path: '/center',
+    component: import('@/views/Center.vue'),
   }
 ]
 

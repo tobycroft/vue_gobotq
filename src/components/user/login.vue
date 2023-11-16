@@ -117,7 +117,7 @@ export default {
       })
       if (ret.isSuccess) {
         TokenModel.Api_set_uidAndToken(ret.data["uid"], ret.data["token"])
-        this.$router.push("/")
+        this.$router.push("/center")
       }
     },
   },
