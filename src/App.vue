@@ -37,16 +37,23 @@ export default {
     readalert() {
       const alert = Alert.GetAlert()
       if (alert != null) {
-        this.handleCustomEvent(alert)
+        this.handleAlert(alert)
+      }
+      const go = Alert.GetGo()
+      if (go != null) {
+        this.handleGo(alert)
       }
     },
     close() {
       this.dialogVisible = false;
     },
-    handleCustomEvent(message) {
+    handleAlert(message) {
       this.message = message;
       this.dialogVisible = true;
       console.log("channelmsg", message);
+    },
+    handleGo(message) {
+      this.$router.push(message)
     },
   },
 };

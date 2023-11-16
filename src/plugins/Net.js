@@ -1,40 +1,23 @@
 import axios from 'axios';
 import Alert from "@/plugins/Alert";
+import TokenModel from "@/model/TokenModel";
 
 const baseURL = 'http://gobotq.tuuz.top:81';
 
 class Net {
-
-  isSuccess = false;
-  code = 0;
-  data;
-  echo = '';
-
   constructor(path) {
     this.apiEndpoint = baseURL + path;
-    this.headers = {
-      uid: localStorage.getItem("uid"),
-      token: localStorage.getItem("token"),
-    };
+    this.headers = TokenModel.Api_find_uidAndToken();
   }
 
-  GetData() {
-    if (!this.isSuccess) {
-      return this.data;
-    } else {
-      return null;
-    }
-  }
-
-
-  async PostFormData(dataObject) {
+  async PostFormData(params = {}) {
     // 创建一个 FormData 对象
     const formData = new FormData();
 
     // 将对象的键值对添加到 FormData
-    for (const key in dataObject) {
-      if (dataObject.hasOwnProperty(key)) {
-        formData.append(key, dataObject[key]);
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        formData.append(key, params[key]);
       }
     }
     this.headers['Content-Type'] = 'multipart/form-data';
@@ -42,35 +25,42 @@ class Net {
     const response = await axios.post(this.apiEndpoint, formData, {
       headers: this.headers,
     });
-    this.responseHandler(response.data);
-    return this;
+    return new Ret(response.data);
   }
 
-  async Get(params) {
+  async Get(params = {}) {
     const response = await axios.get(this.apiEndpoint, {
       headers: this.headers,
       params: params, // 可选：如果有查询参数，通过 params 传递
     });
 
     // 处理响应数据
-    return response.data; // 返回响应数据
-    this.responseHandler(error);
-
+    return new Ret(response.data);
   }
 
-  responseHandler(ret) {
+}
+
+class Ret {
+  isSuccess = false;
+  code = 0;
+  data;
+  echo = '';
+
+  constructor(ret) {
     this.code = ret["code"];
     this.data = ret["data"];
     this.echo = ret["echo"];
     switch (ret["code"]) {
       case 0:
         this.isSuccess = true;
-        return ret;
+        break;
+
 
       case -1:
         localStorage.clear();
         Alert.SetAlert(ret["echo"])
-        return ret;
+        Alert.GetGo("/user/login")
+        break;
 
 
       default:
@@ -81,7 +71,15 @@ class Net {
         } else {
 
         }
-        return ret;
+        break;
+    }
+  }
+
+  GetData() {
+    if (!this.isSuccess) {
+      return this.data;
+    } else {
+      return null;
     }
   }
 }

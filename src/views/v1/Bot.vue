@@ -52,6 +52,7 @@ import Net from "@/plugins/Net";
 
 export default {
   mounted() {
+    this.getdata()
   },
   components: {Topheader},
   data() {
@@ -69,8 +70,11 @@ export default {
     };
   },
   methods: {
-    async getdata(){
-      var ret=await new Net("/v1/bot/list/owned").PostFormData()
+    async getdata() {
+      var ret = await new Net("/v1/bot/list/owned").Get()
+      if (ret.isSuccess) {
+        this.dataList=ret.GetData()
+      }
     },
     unbind(item) {
       // 实现解绑逻辑

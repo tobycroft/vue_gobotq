@@ -3,5 +3,10 @@ class TokenModel {
     localStorage.setItem(uid, token);
   }
 
+  static Api_find_uidAndToken() {
+    return {uid: localStorage.getItem("uid"), token: localStorage.getItem("token")}
+  }
+
 }
+
 export default TokenModel
