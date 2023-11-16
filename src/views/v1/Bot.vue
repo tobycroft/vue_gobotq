@@ -49,6 +49,7 @@
 <script>
 import Topheader from "@/components/center/header/topheader.vue";
 import Net from "@/plugins/Net";
+import moment from "moment";
 
 export default {
   mounted() {
@@ -58,6 +59,7 @@ export default {
   data() {
     return {
       headers: [
+        // {title: '合并', value: 'comb'},
         {title: '昵称', value: 'cname'},
         {title: '图片', value: 'img'},
         {title: '类型', value: 'type'},
@@ -70,9 +72,18 @@ export default {
     };
   },
   methods: {
+    showColumn(header) {
+      // 根据条件判断是否在手机端显示该列
+      return header.mobile || this.$vuetify.breakpoint.mdAndUp;
+    },
     async getdata() {
       var ret = await new Net("/v1/bot/list/owned").Get()
       if (ret.isSuccess) {
+        const list = ret.data
+        list.forEach(function (data) {
+          data["end_date"] =moment(data["end_date"]).format("Y-M-D HH:mm:ss")
+          data["comb"] = data["cname"] + "\n" + data["self_id"]
+        })
         this.dataList = ret.data
       }
     },
