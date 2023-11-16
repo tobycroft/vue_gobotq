@@ -72,7 +72,7 @@
 
 <script>
 import Net from "@/plugins/Net";
-import Alert from "@/plugins/Alert";
+import TokenModel from "@/model/TokenModel";
 
 const vFocus = {
   mounted: (el) => el.focus()
@@ -112,7 +112,10 @@ export default {
         qq: this.qq,
         password: this.password
       })
-      console.log("aaa", ret)
+      if (ret.isSuccess) {
+        TokenModel.Api_set_uidAndToken(ret.data["uid"], ret.data["token"])
+        this.$router.push("/")
+      }
     },
   },
 }

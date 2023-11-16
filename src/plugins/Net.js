@@ -5,7 +5,10 @@ const baseURL = 'http://gobotq.tuuz.top:81';
 
 class Net {
 
+  isSuccess = false;
   code = 0;
+  data;
+  echo = '';
 
   constructor(path) {
     this.apiEndpoint = baseURL + path;
@@ -13,6 +16,13 @@ class Net {
       uid: localStorage.getItem("uid"),
       token: localStorage.getItem("token"),
     };
+  }
+  GetData() {
+    if (!this.isSuccess) {
+      return this.data;
+    } else {
+      return null;
+    }
   }
 
 
@@ -31,13 +41,17 @@ class Net {
     const response = await axios.post(this.apiEndpoint, formData, {
       headers: this.headers,
     });
-    return this.ErrorHandler(response.data);
+    this.ErrorHandler(response.data);
+    return this;
   }
 
   ErrorHandler(ret) {
-    this.code = ret["code"]
+    this.code = ret["code"];
+    this.data = ret["data"];
+    this.echo = ret["echo"];
     switch (ret["code"]) {
       case 0:
+        this.isSuccess = true;
         return ret;
 
       case -1:
