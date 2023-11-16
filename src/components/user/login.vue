@@ -27,6 +27,7 @@
       <v-card v-show="show2"
               class="py-8 px-6 text-center mx-auto ma-4"
               elevation="12"
+
               max-width="100%"
               width="100%"
       >
@@ -42,7 +43,9 @@
           <v-otp-input autofocus="true"
                        v-model="password"
                        type="text"
+                       length="8"
                        variant="solo-filled"
+                       max-width="400"
           ></v-otp-input>
         </v-sheet>
 
