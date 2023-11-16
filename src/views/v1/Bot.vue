@@ -1,13 +1,14 @@
-
 <template>
   <v-app>
-    <v-container>
+    <Topheader></Topheader>
+    <v-container class="mt-16">
       <v-data-table
         :headers="headers"
         :items="dataList"
         :items-per-page="5"
         class="elevation-1"
       >
+
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>数据列表</v-toolbar-title>
@@ -33,17 +34,20 @@
 </template>
 
 <script>
+import Topheader from "@/components/center/header/topheader.vue";
+
 export default {
+  components: {Topheader},
   data() {
     return {
       headers: [
-        { text: '昵称', value: 'cname' },
-        { text: '图片', value: 'img' },
-        { text: '类型', value: 'type' },
-        { text: '所有者', value: 'owner' },
-        { text: '结束时间', value: 'end_time' },
-        { text: '激活状态', value: 'active' },
-        { text: '操作', value: 'action', sortable: false },
+        {text: '昵称', value: 'cname'},
+        {text: '图片', value: 'img'},
+        {text: '类型', value: 'type'},
+        {text: '所有者', value: 'owner'},
+        {text: '结束时间', value: 'end_time'},
+        {text: '激活状态', value: 'active'},
+        {text: '操作', value: 'action', sortable: false},
       ],
       dataList: [
         {
