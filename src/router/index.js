@@ -26,7 +26,7 @@ const routes = [
   } ,
   {
     path: '/center/bot',
-    component: import('@/views/v1/BotFrame.vue'),
+    component: import('@/views/v1/Bot.vue'),
   },
   {
     path: '/center/group',

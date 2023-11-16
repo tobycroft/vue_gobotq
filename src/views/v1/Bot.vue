@@ -87,7 +87,7 @@ export default {
       console.log("下线", item);
     },
   },
-};
+}
 </script>
 
 <style>
