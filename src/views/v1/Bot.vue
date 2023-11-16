@@ -83,9 +83,10 @@ export default {
         list.forEach(function (data) {
           data["active"] = data["active"] === 1 ? "是" : "否"
           data["end_date"] = moment(data["end_date"]).format("Y-M-D HH:mm:ss")
+          data["date"] = moment(data["date"]).format("Y-M-D HH:mm:ss")
           data["comb"] = data["cname"] + "\n" + data["self_id"]
         })
-        this.dataList = ret.data
+        this.dataList = list
       }
     },
     unbind(item) {
@@ -94,7 +95,7 @@ export default {
     },
     viewDetails(item) {
       // 实现查看详情逻辑
-      this.$router.push({ path: '/v1/bot/detail', query: { data: JSON.stringify(item) } });
+      this.$router.push({path: '/v1/bot/detail', query: {data: JSON.stringify(item)}});
       console.log("查看详情", item);
     },
     online(item) {

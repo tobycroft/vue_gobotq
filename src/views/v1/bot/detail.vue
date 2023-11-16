@@ -2,10 +2,10 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="24" md="6">
           <v-img :src="details.img" alt="Image"></v-img>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="24" md="6">
           <v-card>
             <v-card-title>{{ details.cname }}</v-card-title>
             <v-card-subtitle>机器人类型: {{ details.type }}</v-card-subtitle>
@@ -40,7 +40,13 @@ export default {
 </script>
 
 <style scoped>
-.v-card {
-  font-size: 3rem; /* 设置特定组件的字体大小 */
+.v-card-title {
+  font-size: 3rem;
+  line-height: unset;
+}
+
+.v-card-subtitle {
+  font-size: 1.5rem; /* 设置特定组件的字体大小 */
+  line-height: unset;
 }
 </style>
