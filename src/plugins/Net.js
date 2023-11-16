@@ -4,6 +4,9 @@ import Alert from "@/plugins/Alert";
 const baseURL = 'http://gobotq.tuuz.top:81';
 
 class Net {
+
+  code = 0;
+
   constructor(path) {
     this.apiEndpoint = baseURL + path;
     this.headers = {
@@ -32,6 +35,7 @@ class Net {
   }
 
   ErrorHandler(ret) {
+    this.code = ret["code"]
     switch (ret["code"]) {
       case 0:
         return ret;
