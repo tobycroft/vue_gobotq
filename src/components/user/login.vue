@@ -112,7 +112,6 @@ export default {
         qq: this.qq,
         password: this.password
       })
-      Alert.SetAlert(ret)
       console.log("aaa", ret)
     },
   },

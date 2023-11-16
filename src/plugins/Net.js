@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Alert from "@/plugins/Alert";
 
 const baseURL = 'http://gobotq.tuuz.top:81';
 
@@ -31,13 +32,25 @@ class Net {
   }
 
   ErrorHandler(ret) {
-    console.log(ret)
-    if (ret["code"] > 0) {
-      console.log(ret["echo"])
-    } else if (ret["code"] < 0) {
-      console.log(ret["echo"])
-    } else {
-      return ret;
+    switch (ret["code"]) {
+      case 0:
+        return ret;
+
+      case -1:
+        localStorage.clear();
+        Alert.SetAlert(ret["echo"])
+        return ret;
+
+
+      default:
+        if (ret["code"] > 0) {
+          Alert.SetAlert(ret["echo"])
+        } else if (ret["code"] < 0) {
+          Alert.SetAlert(ret["echo"])
+        } else {
+
+        }
+        return ret;
     }
   }
 }

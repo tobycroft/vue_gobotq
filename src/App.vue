@@ -37,7 +37,7 @@ export default {
     readalert() {
       const alert = Alert.GetAlert()
       if (alert != null) {
-        this.handleCustomEvent()
+        this.handleCustomEvent(alert)
       }
     },
     close() {
