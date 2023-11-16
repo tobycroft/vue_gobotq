@@ -72,6 +72,7 @@
 
 <script>
 import Net from "@/plugins/Net";
+import Alert from "@/plugins/Alert";
 
 const vFocus = {
   mounted: (el) => el.focus()
@@ -111,6 +112,7 @@ export default {
         qq: this.qq,
         password: this.password
       })
+      Alert.SetAlert(ret)
       console.log("aaa", ret)
     },
   },
