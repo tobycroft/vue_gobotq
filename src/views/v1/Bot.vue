@@ -120,7 +120,7 @@ export default {
       return header.mobile || this.$vuetify.breakpoint.mdAndUp;
     },
     async getdata() {
-      var ret = await new Net("/v1/bot/list/owned").Get()
+      var ret = await new Net("/v1/bot/info/owned").Get()
       if (ret.isSuccess) {
         const list = ret.data
         list.forEach(function (data) {
@@ -133,7 +133,7 @@ export default {
       }
     },
     async getdata2() {
-      var ret = await new Net("/v1/bot/list/unbind").Get()
+      var ret = await new Net("/v1/bot/info/unbind").Get()
       if (ret.isSuccess) {
         const list = ret.data
         list.forEach(function (data) {
