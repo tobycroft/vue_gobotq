@@ -73,7 +73,7 @@ export default {
     async getdata() {
       var ret = await new Net("/v1/bot/list/owned").Get()
       if (ret.isSuccess) {
-        this.dataList=ret.GetData()
+        this.dataList = ret.data
       }
     },
     unbind(item) {
