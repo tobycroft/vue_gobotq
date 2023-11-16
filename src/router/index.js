@@ -19,11 +19,27 @@ const routes = [
   {
     path: '/user/login',
     component: import('@/views/user/Login.vue'),
-  } ,
+  },
   {
     path: '/center',
     component: import('@/views/Center.vue'),
-  }
+  } ,
+  {
+    path: '/center/bot',
+    component: import('@/views/v1/Bot.vue'),
+  },
+  {
+    path: '/center/group',
+    component: import('@/views/v1/Group.vue'),
+  },
+  {
+    path: '/center/index',
+    component: import('@/views/v1/Index.vue'),
+  },
+  {
+    path: '/center/user',
+    component: import('@/views/v1/User.vue'),
+  },
 ]
 
 const router = createRouter({
