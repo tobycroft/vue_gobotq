@@ -12,8 +12,10 @@ class Alert {
     localStorage.setItem("gourl", message)
   }
 
-  static GetGo(message) {
-    localStorage.getItem("gourl")
+  static GetGo() {
+    const go = localStorage.getItem("gourl")
+    localStorage.removeItem("gourl")
+    return go
   }
 
   static GetToast() {
