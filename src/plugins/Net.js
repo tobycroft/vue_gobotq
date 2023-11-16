@@ -5,6 +5,8 @@ import TokenModel from "@/model/TokenModel";
 const baseURL = 'http://gobotq.tuuz.top:81';
 
 class Net {
+  header = {};
+
   constructor(path) {
     this.apiEndpoint = baseURL + path;
     this.headers = TokenModel.Api_find_uidAndToken();
