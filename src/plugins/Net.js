@@ -17,6 +17,7 @@ class Net {
       token: localStorage.getItem("token"),
     };
   }
+
   GetData() {
     if (!this.isSuccess) {
       return this.data;
@@ -41,11 +42,23 @@ class Net {
     const response = await axios.post(this.apiEndpoint, formData, {
       headers: this.headers,
     });
-    this.ErrorHandler(response.data);
+    this.responseHandler(response.data);
     return this;
   }
 
-  ErrorHandler(ret) {
+  async Get(params) {
+    const response = await axios.get(this.apiEndpoint, {
+      headers: this.headers,
+      params: params, // 可选：如果有查询参数，通过 params 传递
+    });
+
+    // 处理响应数据
+    return response.data; // 返回响应数据
+    this.responseHandler(error);
+
+  }
+
+  responseHandler(ret) {
     this.code = ret["code"];
     this.data = ret["data"];
     this.echo = ret["echo"];
