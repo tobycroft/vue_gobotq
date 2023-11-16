@@ -5,10 +5,10 @@
       <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title>GobotQ控制台</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text @click="navigateTo('control')">机器人控制</v-btn>
-      <v-btn text @click="navigateTo('management')">群管理</v-btn>
-      <v-btn text @click="navigateTo('discover')">发现</v-btn>
-      <v-btn text @click="navigateTo('profile')">我的</v-btn>
+      <v-btn text @click="navigateTo('/center/bot')">机器人控制</v-btn>
+      <v-btn text @click="navigateTo('/center/group')">群管理</v-btn>
+      <v-btn text @click="navigateTo('/center/index')">发现</v-btn>
+      <v-btn text @click="navigateTo('/center/user')">我的</v-btn>
     </v-app-bar>
 
     <!-- 主页面内容区域 -->
