@@ -41,7 +41,7 @@ export default {
       }
       const go = Alert.GetGo()
       if (go != null) {
-        this.handleGo(alert)
+        this.handleGo(go)
       }
     },
     close() {
@@ -53,6 +53,7 @@ export default {
       console.log("channelmsg", message);
     },
     handleGo(message) {
+      console.log("gou",message)
       this.$router.push(message)
     },
   },

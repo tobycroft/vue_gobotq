@@ -59,7 +59,7 @@ class Ret {
       case -1:
         localStorage.clear();
         Alert.SetAlert(ret["echo"])
-        Alert.GetGo("/user/login")
+        Alert.SetGo("/user/login")
         break;
 
 
