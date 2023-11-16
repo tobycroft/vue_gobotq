@@ -4,7 +4,7 @@ class TokenModel {
   }
 
   static Api_find_uidAndToken() {
-    return {uid: localStorage.getItem("uid"), token: localStorage.getItem("token")}
+    return {"uid": localStorage.getItem("uid"), "token": localStorage.getItem("token")}
   }
 
 }
