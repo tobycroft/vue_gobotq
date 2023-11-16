@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <Topheader></Topheader>
+    <v-container class="mt-8"></v-container>
     <v-data-table
       :headers="headers"
       :items="dataList"
@@ -9,7 +10,47 @@
     >
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>数据列表</v-toolbar-title>
+          <v-toolbar-title>绑定在你名下的机器人</v-toolbar-title>
+        </v-toolbar>
+      </template>
+      <template v-slot:header="{ props }">
+        <thead>
+        <tr>
+          <th v-for="header in props.headers" :key="header.title" :class="{ 'text-left': header.value !== 'action' }">
+            {{ header.title }}
+          </th>
+          <th class="text-right">操作</th>
+        </tr>
+        </thead>
+      </template>
+      <template v-slot:item.img="{ item }">
+        <v-img :src="item.img" alt="Image" width="50" height="50"></v-img>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-btn @click="unbind(item)" icon>
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+        <v-btn @click="viewDetails(item)" icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+        <v-btn @click="online(item)" icon>
+          <v-icon>mdi-arrow-up-bold</v-icon>
+        </v-btn>
+        <v-btn @click="offline(item)" icon>
+          <v-icon>mdi-arrow-down-bold</v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
+
+    <v-data-table
+      :headers="headers"
+      :items="dataListunbind"
+      :items-per-page="5"
+      class="elevation-1"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>未绑定机器人</v-toolbar-title>
         </v-toolbar>
       </template>
       <template v-slot:header="{ props }">
@@ -54,6 +95,7 @@ import moment from "moment";
 export default {
   mounted() {
     this.getdata()
+    this.getdata2()
   },
   components: {Topheader},
   data() {
@@ -69,6 +111,7 @@ export default {
         {title: '操作', value: 'action', sortable: false},
       ],
       dataList: [],
+      dataListunbind: [],
     };
   },
   methods: {
@@ -87,6 +130,19 @@ export default {
           data["comb"] = data["cname"] + "\n" + data["self_id"]
         })
         this.dataList = list
+      }
+    },
+    async getdata2() {
+      var ret = await new Net("/v1/bot/list/unbind").Get()
+      if (ret.isSuccess) {
+        const list = ret.data
+        list.forEach(function (data) {
+          data["active"] = data["active"] === 1 ? "是" : "否"
+          data["end_date"] = moment(data["end_date"]).format("Y-M-D HH:mm:ss")
+          data["date"] = moment(data["date"]).format("Y-M-D HH:mm:ss")
+          data["comb"] = data["cname"] + "\n" + data["self_id"]
+        })
+        this.dataListunbind = list
       }
     },
     unbind(item) {
