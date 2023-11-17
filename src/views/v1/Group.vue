@@ -27,10 +27,10 @@
 
 import {defineComponent} from "vue";
 import Topheader from "@/components/center/header/topheader.vue";
-import MyGroup from "@/views/v1/group/MyGroup.vue";
+import MyGroup from "@/views/v1/group/MyAdminGroup.vue";
 
 export default defineComponent({
-  components: {MyGroup, Private, Topheader},
+  components: {MyGroup, Topheader},
   computed: {},
   mounted() {
   },

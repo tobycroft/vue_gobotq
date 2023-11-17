@@ -9,6 +9,11 @@ class TokenModel {
   }
 
 
+  static Api_find_uid() {
+    return localStorage.getItem("uid")
+  }
+
+
   static Api_is_login() {
     return localStorage.getItem("uid") != null && localStorage.getItem("token") != null
   }
