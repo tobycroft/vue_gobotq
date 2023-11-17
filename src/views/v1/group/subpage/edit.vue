@@ -1,59 +1,42 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-form ref="form" v-model="valid" lazy-validation>
-        <!-- Other form fields -->
+  <v-container>
+    <v-form v-model="valid" ref="form" @submit.prevent="submitForm">
+      <v-row>
+        <v-col v-for="field in fields" :key="field.key" cols="12" md="6">
 
-        <!-- Switch for each setting -->
-        <v-row v-for="(value, key) in formData" :key="key">
-          <v-col cols="12" md="6" lg="4">
-            <v-switch
-              v-model="formData[key]"
-              :label="key"
-              :value="value"
-              @change="updateFormData(key)"
-            ></v-switch>
-          </v-col>
-        </v-row>
+          <v-textarea
+            hide-details="false"
+            v-if="field.type === 'string'"
+            :label="field.label"
+            v-model="formData[field.key]"
+            :rules="field.rules"
+          ></v-textarea>
 
-        <!-- Text fields for specific settings -->
-        <v-row>
-          <v-col cols="12" md="6" lg="4">
-            <v-text-field
-              v-if="formData.auto_verify_word !== null"
-              v-model="formData.auto_verify_word"
-              :label="'自动验证答案'"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6" lg="4">
-            <v-text-field
-              v-if="formData.welcome_word !== null"
-              v-model="formData.welcome_word"
-              :label="'欢迎词'"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6" lg="4">
-            <v-text-field
-              v-if="formData.auto_card_value !== null"
-              v-model="formData.auto_card_value"
-              :label="'预设群名片'"
-            ></v-text-field>
-          </v-col>
-        </v-row>
 
-        <!-- Other form fields -->
+          <v-switch inset
+                    v-if="field.type === 'bool'"
+                    :label="field.label"
+                    v-model="formData[field.key]"
+          ></v-switch>
 
-        <v-btn @click="submitForm">保存</v-btn>
-      </v-form>
-    </v-container>
-  </v-app>
+          <!-- Other types of form fields can be added as needed -->
+
+        </v-col>
+      </v-row>
+
+      <v-btn type="submit" :disabled="!valid" block color="primary" class="mt-4">提交</v-btn>
+      <v-btn block color="grey" class="mt-4" @click="back">返回</v-btn>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
+import Net from "@/plugins/Net";
+import Alert from "@/plugins/Alert";
+
 export default {
   data() {
     return {
-      valid: true,
       formData: {
         ban_repeat: 1,
         auto_card_insert: 0,
@@ -91,22 +74,73 @@ export default {
         ban_limit: 3,
         ban_url: 0,
       },
+      fields: [],
+      field: {},
     };
   },
   methods: {
-    updateFormData(key) {
-      // Handle specific logic if needed
+    updateFormData(key, value) {
     },
-    submitForm() {
-      if (this.$refs.form.validate()) {
-        // Handle form submission, e.g., send data to the server
-        console.log(this.formData);
+    async submitForm() {
+      // This is where you call your own submission method and pass this.formData to it
+      var ret = await new Net("/v1/bot/info/edit").PostFormData(this.formData)
+      if (ret.isSuccess) {
+        Alert.SetAlert(ret.echo)
+        this.$router.go(-1)
+      } else {
+        Alert.SetAlert(ret.echo)
+      }
+    },
+    back() {
+      this.$router.go(-1)
+    },
+    async getDetail() {
+      var ret = await new Net("/v1/group/function/detail").Get()
+      if (ret.isSuccess) {
+        const list = ret.data
+        for (const i in list) {
+          const data = list[i]
+          this.fields.push({key: data["key"], label: data["name"], type: data["type"], rules: []})
+          this.field[data["key"]] = data["type"]
+        }
+        this.fillForm()
+      } else {
+        Alert.SetAlert(ret.echo)
+      }
+    },
+    async fillForm() {
+      // Fill the form directly with the provided JSON data
+      var ret = await new Net("/v1/group/function/get").PostFormData({
+        self_id: this.$route.query.self_id,
+        group_id: this.$route.query.group_id,
+      })
+      if (ret.isSuccess) {
+        let list = ret.data
+        for (const listKey in list) {
+          console.log(listKey)
+          console.log(this.field[listKey])
+          switch (this.field[listKey]) {
+            case "string":
+              break
+
+            case "bool":
+              list[listKey] = Boolean(list[listKey])
+              console.log(listKey)
+              break
+
+            case "int":
+              break
+          }
+        }
+        this.formData = list
+      } else {
+        Alert.SetAlert(ret.echo)
       }
     },
   },
+  created() {
+    // Call fillForm method to perform data filling when the component is mounted
+    this.getDetail();
+  },
 };
 </script>
-
-<style>
-/* Add your custom styles here */
-</style>
