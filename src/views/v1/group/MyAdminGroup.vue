@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    :items-per-page="5"
+    :items-per-page="15"
     class="elevation-1"
   >
     <template v-slot:items="props">
@@ -76,6 +76,12 @@ export default {
 
         this.items = list
       }
+    },
+    modify(item) {
+      console.log(item)
+    },
+    reset(item) {
+      console.log(item)
     },
   }
 };

@@ -14,9 +14,9 @@
 
     </v-tabs>
     <!-- 主页面内容区域 -->
-      <AdminGroup v-if="tab===0"></AdminGroup>
-      <MyJoinGroup v-if="tab==1"></MyJoinGroup>
-      <BotAdminGroup v-if="tab==2"></BotAdminGroup>
+    <MyAdminGroup v-if="tab===0"></MyAdminGroup>
+    <MyJoinGroup v-if="tab===1"></MyJoinGroup>
+    <BotAdminGroup v-if="tab===2"></BotAdminGroup>
   </v-app>
 
 </template>
@@ -27,11 +27,11 @@
 import {defineComponent} from "vue";
 import Topheader from "@/components/center/header/topheader.vue";
 import BotAdminGroup from "@/views/v1/group/BotAdminGroup.vue";
-import AdminGroup from "@/views/v1/group/MyAdminGroup.vue";
+import MyAdminGroup from "@/views/v1/group/MyAdminGroup.vue";
 import MyJoinGroup from "@/views/v1/group/MyJoinGroup.vue";
 
 export default defineComponent({
-  components: {MyJoinGroup, AdminGroup, BotAdminGroup, Topheader},
+  components: {MyJoinGroup, MyAdminGroup, BotAdminGroup, Topheader},
   computed: {},
   mounted() {
   },

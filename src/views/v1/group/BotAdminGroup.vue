@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    :items-per-page="5"
+    :items-per-page="15"
     class="elevation-1"
   >
     <template v-slot:items="props">
@@ -34,7 +34,6 @@
 
 <script>
 import Net from "@/plugins/Net";
-import TokenModel from "@/model/TokenModel";
 
 export default {
   mounted() {
@@ -67,15 +66,18 @@ export default {
       return date.toLocaleString();
     },
     async getGroupList() {
-      var ret = await new Net("/v1/group/member/bot").PostFormData({
-        user_id: TokenModel.Api_find_uid(),
-        role: JSON.stringify(["admin", "owner"])
-      })
+      var ret = await new Net("/v1/group/member/bot").Get({})
       if (ret.isSuccess) {
         const list = ret.data
 
         this.items = list
       }
+    },
+    modify(item) {
+      console.log(item)
+    },
+    reset(item) {
+      console.log(item)
     },
   }
 };
