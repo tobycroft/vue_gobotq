@@ -74,7 +74,7 @@ export default {
       }
     },
     modify(item) {
-      console.log(item)
+      this.$router.push({path: '/v1/group/edit', query: {group_id: item["group_id"]}});
     },
     reset(item) {
       console.log(item)
