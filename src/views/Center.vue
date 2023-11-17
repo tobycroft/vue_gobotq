@@ -17,6 +17,11 @@
 import Topheader from "@/components/center/header/topheader.vue";
 
 export default {
-  components: {Topheader}
+  components: {Topheader},
+  data: () => ({}),
+  mounted() {
+  },
+  methods: {},
+
 };
 </script>
