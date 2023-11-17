@@ -16,7 +16,7 @@
     </v-tabs>
     <!-- 主页面内容区域 -->
     <v-slide-x-transition>
-      <MyGroup v-if="tab===0"></MyGroup>
+      <MyAdminGrop v-if="tab===0"></MyAdminGrop>
     </v-slide-x-transition>
   </v-app>
 
@@ -27,7 +27,6 @@
 
 import {defineComponent} from "vue";
 import Topheader from "@/components/center/header/topheader.vue";
-import MyGroup from "@/views/v1/group/MyAdminGroup.vue";
 
 export default defineComponent({
   components: {MyGroup, Topheader},
