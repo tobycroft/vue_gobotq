@@ -2,24 +2,24 @@
   <v-app>
 
     <topheader></topheader>
-    <v-tabs v-model="tab"
+    <v-tabs v-model="tab" @click="changetab"
             fixed-tabs
             bg-color="indigo-darken-2"
     >
-      <v-tab value="1">
+      <v-tab >
         开放机器人
       </v-tab>
-      <v-tab value="2">
+      <v-tab >
         私有机器人
       </v-tab>
-      <v-tab value="3">
+      <v-tab >
         未绑定机器人
       </v-tab>
     </v-tabs>
     <v-slide-x-transition>
-      <Public v-if="tab==1"></Public>
-      <Private v-if="tab==2"></Private>
-      <Unbind v-if="tab==3"></Unbind>
+      <Public v-if="tab===0"></Public>
+      <Private v-if="tab===1"></Private>
+      <Unbind v-if="tab===2"></Unbind>
     </v-slide-x-transition>
   </v-app>
 
