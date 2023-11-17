@@ -27,7 +27,7 @@
 import {defineComponent} from "vue";
 import Topheader from "@/components/center/header/topheader.vue";
 import BotAdminGroup from "@/views/v1/group/BotAdminGroup.vue";
-import AdminGroup from "@/views/v1/group/AdminGroup.vue";
+import AdminGroup from "@/views/v1/group/MyAdminGroup.vue";
 import MyJoinGroup from "@/views/v1/group/MyJoinGroup.vue";
 
 export default defineComponent({
