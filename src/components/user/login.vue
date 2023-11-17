@@ -83,6 +83,9 @@ const vFocus = {
 export default {
   created() {
     this.qq = localStorage.getItem("qq")
+    if(TokenModel.Api_is_login()){
+      this.$router.push("/center")
+    }
   },
   data: () => ({
     show1: true,
