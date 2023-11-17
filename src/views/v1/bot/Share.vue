@@ -77,7 +77,9 @@ export default {
   },
   methods: {
     async getOpenList() {
-      var ret = await new Net("/v1/bot/info/list").Get()
+      var ret = await new Net("/v1/bot/info/list").PostFormData({
+        type: "share"
+      })
       if (ret.isSuccess) {
         const list = ret.data
         list.forEach(function (data) {

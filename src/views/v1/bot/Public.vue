@@ -13,9 +13,9 @@
         class="elevation-1"
       >
         <template v-slot:top>
-<!--          <v-toolbar flat>-->
-<!--            <v-toolbar-title>开放机器人</v-toolbar-title>-->
-<!--          </v-toolbar>-->
+          <!--          <v-toolbar flat>-->
+          <!--            <v-toolbar-title>开放机器人</v-toolbar-title>-->
+          <!--          </v-toolbar>-->
         </template>
         <template v-slot:header="{ props }">
           <thead>
@@ -77,7 +77,9 @@ export default {
   },
   methods: {
     async getOpenList() {
-      var ret = await new Net("/v1/bot/info/list").Get()
+      var ret = await new Net("/v1/bot/info/list").PostFormData({
+        type: "public"
+      })
       if (ret.isSuccess) {
         const list = ret.data
         list.forEach(function (data) {
