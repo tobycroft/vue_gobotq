@@ -7,9 +7,9 @@
                   class="elevation-1"
     >
       <template v-slot:top>
-        <v-toolbar flat>
-          <v-toolbar-title>绑定在你名下的机器人</v-toolbar-title>
-        </v-toolbar>
+<!--        <v-toolbar flat>-->
+<!--          <v-toolbar-title>绑定在你名下的机器人</v-toolbar-title>-->
+<!--        </v-toolbar>-->
       </template>
       <template v-slot:header="{ props }">
         <thead>

@@ -61,8 +61,8 @@ const table_headers = [
   {title: '机器人号码', value: 'self_id'},
   // {title: '图片', value: 'img'},
   {title: '类型', value: 'type'},
-  // {title: '所有者', value: 'owner'},
-  {title: '结束时间', value: 'end_date'},
+  {title: '所有者', value: 'owner'},
+  // {title: '结束时间', value: 'end_date'},
   {title: '激活状态', value: 'active'},
 ]
 

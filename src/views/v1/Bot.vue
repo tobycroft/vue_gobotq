@@ -6,20 +6,16 @@
             fixed-tabs
             bg-color="indigo-darken-2"
     >
-      <v-tab >
-        开放机器人
-      </v-tab>
-      <v-tab >
-        私有机器人
-      </v-tab>
-      <v-tab >
-        未绑定机器人
-      </v-tab>
+      <v-tab>开放机器人</v-tab>
+      <v-tab>私有机器人</v-tab>
+      <v-tab>未绑定机器人</v-tab>
+      <v-tab>共享机器人</v-tab>
     </v-tabs>
     <v-slide-x-transition>
       <Public v-if="tab===0"></Public>
       <Private v-if="tab===1"></Private>
       <Unbind v-if="tab===2"></Unbind>
+      <Share v-if="tab===3"></Share>
     </v-slide-x-transition>
   </v-app>
 
@@ -31,13 +27,14 @@ import Topheader from "@/components/center/header/topheader.vue";
 import Public from "@/views/v1/bot/Public.vue";
 import Private from "@/views/v1/bot/Private.vue";
 import Unbind from "@/views/v1/bot/Unbind.vue";
+import Share from "@/views/v1/bot/Share.vue";
 
 
 export default {
   computed: {},
   mounted() {
   },
-  components: {Unbind, Private, Public, Topheader},
+  components: {Share, Unbind, Private, Public, Topheader},
   data: () => ({
     tab: '',
   }),
