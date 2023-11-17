@@ -53,7 +53,7 @@ export default {
       console.log("channelmsg", message);
     },
     handleGo(message) {
-      console.log("gou",message)
+      console.log("gou", message)
       this.$router.push(message)
     },
   },

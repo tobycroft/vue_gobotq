@@ -12,7 +12,7 @@
 
     <v-sheet width="100%" class="mx-auto mt-6" v-show="show1">
       <v-form @submit.prevent>
-        <v-text-field autofocus="true"
+        <v-text-field autofocus
                       v-model="qq"
                       :rules="rules"
                       label="这里输入你的QQ号码"
@@ -40,7 +40,7 @@
         </div>
 
         <v-sheet color="surface">
-          <v-otp-input autofocus="true"
+          <v-otp-input
                        v-model="password"
                        type="text"
                        length="8"

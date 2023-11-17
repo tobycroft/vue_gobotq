@@ -30,9 +30,7 @@ export default defineConfig({
     }),
   ],
   define: {
-    'process.env': {
-      BASE_URL: "bot.tuuz.top"
-    }
+    'process.env': {}
   },
   resolve: {
     alias: {

@@ -4,8 +4,18 @@ import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
   {
     path: '/',
-    name:'login',
-    component: () => () => import('@/views/user/Login.vue'),
+    // component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        // route level code-splitting
+        // this generates a separate chunk (Home-[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        // component: () => import('@/views/Home.vue'),
+        component: () => import('@/views/user/Login.vue'), },
+
+    ],
   },
   {
     path: '/user/login',
@@ -42,6 +52,7 @@ const routes = [
     name:'detail',
     component: () => import('@/views/v1/bot/detail.vue'),
   },
+
 ]
 
 const router = createRouter({
