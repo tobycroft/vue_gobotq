@@ -51,6 +51,10 @@ const routes = [
     path: '/v1/bot/detail',
     name:'detail',
     component: () => import('@/views/v1/bot/subpage/detail.vue'),
+  },  {
+    path: '/v1/bot/edit',
+    name:'edit',
+    component: () => import('@/views/v1/bot/subpage/edit.vue'),
   },
 
 ]

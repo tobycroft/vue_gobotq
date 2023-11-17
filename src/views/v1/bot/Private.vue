@@ -26,16 +26,16 @@
       </template>
       <template v-slot:item.action="{ item }">
         <v-btn @click="unbind(item)" icon>
-          <v-icon>mdi-delete</v-icon>
+          <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
         <v-btn @click="viewDetails(item)" icon>
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon>mdi-information</v-icon>
         </v-btn>
         <v-btn @click="online(item)" icon>
-          <v-icon>mdi-arrow-up-bold</v-icon>
+          <v-icon>mdi-power-plug-outline</v-icon>
         </v-btn>
         <v-btn @click="offline(item)" icon>
-          <v-icon>mdi-arrow-down-bold</v-icon>
+          <v-icon>mdi-power-plug-off-outline</v-icon>
         </v-btn>
       </template>
     </v-data-table>
@@ -100,12 +100,12 @@ export default {
     },
     unbind(item) {
       // 实现解绑逻辑
+      this.$router.push({path: '/v1/bot/edit', query: {self_id: item["self_id"]}});
       console.log("解绑", item);
     },
     viewDetails(item) {
       // 实现查看详情逻辑
       this.$router.push({path: '/v1/bot/detail', query: {self_id: item["self_id"]}});
-      console.log("查看详情", item);
     },
     online(item) {
       // 实现上线逻辑

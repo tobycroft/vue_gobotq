@@ -6,14 +6,14 @@
             fixed-tabs
             bg-color="indigo-darken-2"
     >
-      <v-tab>开放机器人</v-tab>
       <v-tab>私有机器人</v-tab>
+      <v-tab>开放机器人</v-tab>
       <v-tab>未绑定机器人</v-tab>
       <v-tab>共享机器人</v-tab>
     </v-tabs>
     <v-slide-x-transition>
-      <Public v-if="tab===0"></Public>
-      <Private v-if="tab===1"></Private>
+      <Public v-if="tab===1"></Public>
+      <Private v-if="tab===0"></Private>
       <Unbind v-if="tab===2"></Unbind>
       <Share v-if="tab===3"></Share>
     </v-slide-x-transition>
