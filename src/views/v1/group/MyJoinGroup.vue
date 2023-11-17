@@ -55,7 +55,7 @@ export default {
         // {title: '等级', value: 'level'},
         // {title: '记录ID', value: 'id'},
         // {title: '头衔', value: 'title'},
-        { title: '操作', value: 'modify', sortable: false },
+        {title: '操作', value: 'modify', sortable: false},
       ],
       items: [],
     };

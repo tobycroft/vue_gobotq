@@ -11,13 +11,12 @@
       <v-tab>我加入的群</v-tab>
 
       <v-tab>机器人加入的群</v-tab>
-      <v-tab>机器人管理的群</v-tab>
 
     </v-tabs>
     <!-- 主页面内容区域 -->
-    <v-slide-x-transition>
-      <MyAdminGrop v-if="tab===0"></MyAdminGrop>
-    </v-slide-x-transition>
+      <AdminGroup v-if="tab===0"></AdminGroup>
+      <MyJoinGroup v-if="tab==1"></MyJoinGroup>
+      <BotAdminGroup v-if="tab==2"></BotAdminGroup>
   </v-app>
 
 </template>
@@ -27,9 +26,12 @@
 
 import {defineComponent} from "vue";
 import Topheader from "@/components/center/header/topheader.vue";
+import BotAdminGroup from "@/views/v1/group/BotAdminGroup.vue";
+import AdminGroup from "@/views/v1/group/AdminGroup.vue";
+import MyJoinGroup from "@/views/v1/group/MyJoinGroup.vue";
 
 export default defineComponent({
-  components: {MyGroup, Topheader},
+  components: {MyJoinGroup, AdminGroup, BotAdminGroup, Topheader},
   computed: {},
   mounted() {
   },
