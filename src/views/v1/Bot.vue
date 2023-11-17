@@ -40,7 +40,7 @@ export default {
   }),
   methods: {
     changetab() {
-      console.log(this.tab)
+      // console.log(this.tab)
     },
   },
 }
