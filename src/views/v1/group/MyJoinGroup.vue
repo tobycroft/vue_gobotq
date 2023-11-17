@@ -55,7 +55,7 @@ export default {
         // {title: '等级', value: 'level'},
         // {title: '记录ID', value: 'id'},
         // {title: '头衔', value: 'title'},
-        {title: '操作', value: 'modify', sortable: false},
+        // {title: '操作', value: 'modify', sortable: false},
       ],
       items: [],
     };
@@ -69,7 +69,7 @@ export default {
     async getGroupList() {
       var ret = await new Net("/v1/group/member/list").PostFormData({
         user_id: TokenModel.Api_find_uid(),
-        role: JSON.stringify(["admin", "member"])
+        role: JSON.stringify(["member"])
       })
       if (ret.isSuccess) {
         const list = ret.data

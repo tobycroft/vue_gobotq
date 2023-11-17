@@ -22,10 +22,7 @@
     </template>
     <template v-slot:item.modify="{ item }">
       <v-btn @click="modify(item)" icon>
-        <v-icon>mdi-pencil</v-icon>
-      </v-btn>
-      <v-btn @click="reset(item)" icon>
-        <v-icon>mdi-refresh</v-icon>
+        <v-icon>mdi-exit-run</v-icon>
       </v-btn>
     </template>
   </v-data-table>
@@ -42,7 +39,7 @@ export default {
   data() {
     return {
       headers: [
-        // {title: '机器人ID', value: 'self_id'},
+        {title: '机器人ID', value: 'self_id'},
         {title: '群ID', value: 'group_id'},
         {title: '群名称', value: 'group_info.group_name'},
         // {title: '用户ID', value: 'user_id'},
@@ -74,7 +71,7 @@ export default {
       }
     },
     modify(item) {
-      this.$router.push({path: '/v1/group/edit', query: {group_id: item["group_id"],self_id: item["self_id"]}});
+      this.$router.push({path: '/v1/group/edit', query: {group_id: item["group_id"], self_id: item["self_id"]}});
     },
     reset(item) {
       console.log(item)

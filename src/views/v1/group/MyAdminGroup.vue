@@ -24,9 +24,9 @@
       <v-btn @click="modify(item)" icon>
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <v-btn @click="reset(item)" icon>
-        <v-icon>mdi-refresh</v-icon>
-      </v-btn>
+<!--      <v-btn @click="reset(item)" icon>-->
+<!--        <v-icon>mdi-refresh</v-icon>-->
+<!--      </v-btn>-->
     </template>
   </v-data-table>
 
