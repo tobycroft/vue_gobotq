@@ -73,12 +73,6 @@ export default {
       // 这里调用你自己的提交方法，并将 this.formData 传递给它
       console.log('提交表单', this.formData);
       // 示例：在这里可以调用接口提交数据
-
-    },
-    back() {
-      this.$router.go(-1);
-    },
-    async deleteBotRequest(item) {
       var ret = await new Net("/v1/bot/request/add").PostFormData(this.formData)
       if (ret.isSuccess) {
         Alert.SetAlert(ret.echo)
@@ -86,6 +80,9 @@ export default {
       } else {
         Alert.SetAlert(ret.echo)
       }
+    },
+    back() {
+      this.$router.go(-1);
     },
   },
   mounted() {
