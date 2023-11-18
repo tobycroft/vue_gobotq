@@ -12,7 +12,8 @@ const routes = [
         // this generates a separate chunk (Home-[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         // component: () => import('@/views/Home.vue'),
-        component: () => import('@/views/user/Login.vue'), },
+        component: () => import('@/views/user/Login.vue'),
+      },
 
     ],
   },
@@ -48,11 +49,15 @@ const routes = [
     path: '/v1/bot/edit',
     component: () => import('@/views/v1/bot/subpage/edit.vue'),
   },
+
   {
     path: '/v1/group/edit',
     component: () => import('@/views/v1/group/subpage/edit.vue'),
   },
-
+  {
+    path: '/v1/index/botrequest/edit',
+    component: () => import('@/views/v1/index/botRequest/edit.vue'),
+  },
 ]
 
 const router = createRouter({
