@@ -55,7 +55,7 @@ export default {
       }
     },
     async deleteBotRequest(item) {
-      var ret = await new Net("/v1/bot/request/delete").PostFormData(item)
+      var ret = await new Net("/v1/bot/request/del").PostFormData(item)
       Alert.SetAlert(ret.echo)
     },
   },
