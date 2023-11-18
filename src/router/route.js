@@ -56,7 +56,7 @@ const routes = [
   },
   {
     path: '/v1/index/botrequest/edit',
-    component: () => import('@/views/v1/index/botRequest/edit.vue'),
+    component: () => import('@/views/v1/index/botRequest/add.vue'),
   },
 ]
 
