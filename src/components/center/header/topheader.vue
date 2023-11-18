@@ -1,6 +1,8 @@
 <template>
   <v-toolbar app color="#222222">
-    <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
+    <!--    <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>-->
+
+    <v-icon size="60px"><v-img src="@/assets/gobotq.png"></v-img></v-icon>
     <v-toolbar-title @click="navigateTo('/center')">GobotQ控制台</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn text @click="navigateTo('/center/bot')">机器人控制</v-btn>
