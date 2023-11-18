@@ -77,9 +77,6 @@
 import Net from "@/plugins/Net";
 import TokenModel from "@/model/TokenModel";
 
-const vFocus = {
-  mounted: (el) => el.focus()
-}
 export default {
   beforeCreate() {
     this.$router.push("/center")
