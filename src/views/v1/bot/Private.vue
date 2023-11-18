@@ -101,7 +101,6 @@ export default {
     unbind(item) {
       // 实现解绑逻辑
       this.$router.push({path: '/v1/bot/edit', query: {self_id: item["self_id"]}});
-      console.log("解绑", item);
     },
     viewDetails(item) {
       // 实现查看详情逻辑
