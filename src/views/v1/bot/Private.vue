@@ -110,7 +110,7 @@ export default {
       // 实现上线逻辑
       console.log("上线", item);
       var ret = await new Net("/v1/bot/info/active").PostFormData({
-        self_id: this.$route.query.self_id,
+        self_id: item.self_id,
         active: 1
       })
       Alert.SetAlert(ret.echo)
@@ -119,7 +119,7 @@ export default {
       // 实现下线逻辑
       console.log("下线", item);
       var ret = await new Net("/v1/bot/info/active").PostFormData({
-        self_id: this.$route.query.self_id,
+        self_id: item.self_id,
         active: 0
       })
       Alert.SetAlert(ret.echo)
