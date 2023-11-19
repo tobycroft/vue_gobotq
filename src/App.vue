@@ -29,7 +29,7 @@ export default {
     message: '',
   }),
   created() {
-    setInterval(this.readalert, 1000)
+    setInterval(this.readalert, 500)
   },
   destroyed() {
   },
