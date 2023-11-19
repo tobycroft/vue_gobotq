@@ -9,7 +9,10 @@
             <v-col cols="12">
               <v-card>
                 <v-card-text>
-                  <strong>QQ号码：</strong> {{ qqNumber }}
+                  <strong>QQ号码：</strong> {{ formData.qq }}
+                </v-card-text>
+                <v-card-text>
+                  <strong>加入时间：</strong> {{ formData.date }}
                 </v-card-text>
               </v-card>
             </v-col>
@@ -28,11 +31,12 @@
 <script>
 
 import Net from "@/plugins/Net";
+import moment from "moment";
 
 export default {
   data() {
     return {
-      qqNumber: 'YourQQNumber', // 替换为实际的 QQ 号码
+      formData: {}, // 替换为实际的 QQ 号码
     };
   },
   methods: {
@@ -46,7 +50,9 @@ export default {
       const ret = await new Net("/v1/user/info/get").Get();
       if (ret.isSuccess) {
         // 将获取到的 QQ 号码更新到数据中
-        this.qqNumber = ret.data["qq"];
+        const data = ret.data
+        data['date'] = moment(data['date']).format('YYYY-MM-DD HH:mm:ss');
+        this.formData = ret.data
       } else {
         // 处理请求失败的情况，可以显示错误信息等
         console.error(ret.echo);
