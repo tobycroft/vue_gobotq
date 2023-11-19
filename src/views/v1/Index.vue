@@ -6,10 +6,7 @@
             fixed-tabs
             bg-color="indigo-darken-2"
     >
-
       <v-tab>添加我的机器人</v-tab>
-      <!--      <v-tab>我加入的群</v-tab>-->
-      <!--      <v-tab>机器人加入的群</v-tab>-->
 
     </v-tabs>
     <!-- 主页面内容区域 -->
