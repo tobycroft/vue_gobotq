@@ -3,6 +3,10 @@ class TokenModel {
     localStorage.setItem("uid", uid);
     localStorage.setItem("token", token);
   }
+  static Api_clear_uidAndToken() {
+    localStorage.removeItem("uid");
+    localStorage.removeItem("token");
+  }
 
   static Api_find_uidAndToken() {
     return {uid: localStorage.getItem("uid"), token: localStorage.getItem("token")}

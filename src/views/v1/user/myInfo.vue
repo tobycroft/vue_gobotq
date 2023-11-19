@@ -32,6 +32,7 @@
 
 import Net from "@/plugins/Net";
 import moment from "moment";
+import TokenModel from "@/model/TokenModel";
 
 export default {
   data() {
@@ -43,7 +44,9 @@ export default {
     // 退出按钮点击事件
     logout() {
       // 处理退出逻辑，可以调用接口等操作
-      // 例如：this.$router.push('/login') 跳转到登录页
+      TokenModel.Api_clear_uidAndToken()
+      this.$router.push('/user/login')
+
     },
     async fetchData() {
       // 发送获取个人信息的请求
