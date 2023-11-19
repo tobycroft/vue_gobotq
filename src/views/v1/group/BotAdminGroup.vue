@@ -66,7 +66,21 @@ export default {
       var ret = await new Net("/v1/group/member/bot").Get({})
       if (ret.isSuccess) {
         const list = ret.data
+        list.forEach(function (data) {
+          switch (data["role"]) {
+            case "admin":
+              data["role"] = "管理员"
+              break
 
+            case "owner":
+              data["role"] = '群主'
+              break
+
+            case "member":
+              data["role"] = '群成员'
+              break
+          }
+        })
         this.items = list
       }
     },

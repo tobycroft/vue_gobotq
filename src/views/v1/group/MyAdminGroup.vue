@@ -24,9 +24,9 @@
       <v-btn @click="modify(item)" icon>
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-<!--      <v-btn @click="reset(item)" icon>-->
-<!--        <v-icon>mdi-refresh</v-icon>-->
-<!--      </v-btn>-->
+      <!--      <v-btn @click="reset(item)" icon>-->
+      <!--        <v-icon>mdi-refresh</v-icon>-->
+      <!--      </v-btn>-->
     </template>
   </v-data-table>
 
@@ -73,12 +73,26 @@ export default {
       })
       if (ret.isSuccess) {
         const list = ret.data
+        list.forEach(function (data) {
+          switch (data["role"]) {
+            case "admin":
+              data["role"] = "管理员"
+              break
 
+            case "owner":
+              data["role"] = '群主'
+              break
+
+            case "member":
+              data["role"] = '群成员'
+              break
+          }
+        })
         this.items = list
       }
     },
     modify(item) {
-      this.$router.push({path: '/v1/group/edit', query: {group_id: item["group_id"],self_id: item["self_id"]}});
+      this.$router.push({path: '/v1/group/edit', query: {group_id: item["group_id"], self_id: item["self_id"]}});
     },
     reset(item) {
       console.log(item)

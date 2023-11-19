@@ -7,9 +7,9 @@
                   class="elevation-1"
     >
       <template v-slot:top>
-<!--        <v-toolbar flat>-->
-<!--          <v-toolbar-title>绑定在你名下的机器人</v-toolbar-title>-->
-<!--        </v-toolbar>-->
+        <!--        <v-toolbar flat>-->
+        <!--          <v-toolbar-title>绑定在你名下的机器人</v-toolbar-title>-->
+        <!--        </v-toolbar>-->
       </template>
       <template v-slot:header="{ props }">
         <thead>
@@ -41,7 +41,6 @@
     </v-data-table>
 
 
-
   </v-app>
 
 
@@ -53,6 +52,7 @@ import Topheader from "@/components/center/header/topheader.vue";
 import Net from "@/plugins/Net";
 import moment from "moment";
 import TokenModel from "@/model/TokenModel";
+import Alert from "@/plugins/Alert";
 
 const table_headers = [
   // {title: '合并', value: 'comb'},
@@ -106,13 +106,23 @@ export default {
       // 实现查看详情逻辑
       this.$router.push({path: '/v1/bot/detail', query: {self_id: item["self_id"]}});
     },
-    online(item) {
+    async online(item) {
       // 实现上线逻辑
       console.log("上线", item);
+      var ret = await new Net("/v1/bot/info/active").PostFormData({
+        self_id: this.$route.query.self_id,
+        active: 1
+      })
+      Alert.SetAlert(ret.echo)
     },
-    offline(item) {
+    async offline(item) {
       // 实现下线逻辑
       console.log("下线", item);
+      var ret = await new Net("/v1/bot/info/active").PostFormData({
+        self_id: this.$route.query.self_id,
+        active: 0
+      })
+      Alert.SetAlert(ret.echo)
     },
   },
 }
