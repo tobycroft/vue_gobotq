@@ -58,7 +58,7 @@ const table_headers = [
   // {title: '合并', value: 'comb'},
   {title: '昵称', value: 'cname'},
   {title: '机器人号码', value: 'self_id'},
-  // {title: '图片', value: 'img'},
+  {title: '图片', value: 'img'},
   {title: '类型', value: 'type'},
   // {title: '所有者', value: 'owner'},
   {title: '结束时间', value: 'end_date'},
