@@ -79,7 +79,9 @@ import TokenModel from "@/model/TokenModel";
 
 export default {
   beforeCreate() {
-    this.$router.push("/center")
+    if (TokenModel.Api_is_login()) {
+      this.$router.push("/center")
+    }
   },
   created() {
     this.qq = localStorage.getItem("qq")
