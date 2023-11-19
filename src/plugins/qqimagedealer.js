@@ -3,7 +3,7 @@ class Qqimagedealer {
     const urlObject = new URL(fullUrl);
 // 获取路径部分
     const pathPart = urlObject.pathname;
-    return "/qlogo" + pathPart
+    return "//image.tuuz.cc:81/qlogo" + pathPart
   }
 }
 
