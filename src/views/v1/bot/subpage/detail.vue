@@ -29,6 +29,7 @@
 <script>
 import Net from "@/plugins/Net";
 import moment from "moment/moment";
+import Qqimagedealer from "@/plugins/qqimagedealer";
 
 export default {
   mounted() {
@@ -50,6 +51,7 @@ export default {
       })
       if (ret.isSuccess) {
         const data = ret.data
+        data["img"] = Qqimagedealer.GetPath(data["img"])
         data["active"] = data["active"] === 1 ? "是" : "否"
         data["end_date"] = moment(data["end_date"]).format("Y-M-D HH:mm:ss")
         data["date"] = moment(data["date"]).format("Y-M-D HH:mm:ss")
