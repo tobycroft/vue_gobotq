@@ -1,4 +1,5 @@
 <template>
+  <Topheader></Topheader>
   <v-app>
     <v-container>
       <v-row>
@@ -30,8 +31,10 @@
 import Net from "@/plugins/Net";
 import moment from "moment/moment";
 import Qqimagedealer from "@/plugins/qqimagedealer";
+import Topheader from "@/components/center/header/topheader.vue";
 
 export default {
+  components: {Topheader},
   mounted() {
     this.getdata2()
   },

@@ -1,4 +1,5 @@
 <template>
+  <meta name="referrer" content="never">
   <v-dialog width="500" v-model="dialogVisible">
     <template v-if="dialogVisible">
       <v-card title="信息">
