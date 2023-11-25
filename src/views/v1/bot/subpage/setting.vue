@@ -11,17 +11,23 @@
             readonly
           ></v-text-field>
 
-          <v-row v-else-if="field.type === 'radio'" :key="field.key" cols="12">
-            {{ field.label }}：
-            <v-col v-for="option in field.options" :key="option.value" cols="12">
-              <v-radio
-                :label="option.text"
+
+          <v-col v-else-if="field.type === 'radio'" :key="field.key" cols="12" elevation="10">
+            <v-toolbar flat color="deep-purple-accent-4" dark>
+              <v-toolbar-title>{{ field.label }}</v-toolbar-title>
+            </v-toolbar>
+            <v-chip-group v-model="formData[field.key]" filter>
+              <v-chip
+                v-for="option in field.options"
+                :key="option.value"
                 :value="option.value"
-                v-model="formData[field.key]"
                 class="ma-2"
-              ></v-radio>
-            </v-col>
-          </v-row>
+              >
+                {{ option.text }}
+              </v-chip>
+            </v-chip-group>
+          </v-col>
+
         </v-col>
       </v-row>
 
