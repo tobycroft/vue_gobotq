@@ -28,6 +28,9 @@
         <v-btn @click="unbind(item)" icon>
           <v-icon>mdi-square-edit-outline</v-icon>
         </v-btn>
+        <v-btn @click="bot_setting(item)" icon>
+          <v-icon>mdi-cog</v-icon>
+        </v-btn>
         <v-btn @click="viewDetails(item)" icon>
           <v-icon>mdi-information</v-icon>
         </v-btn>
@@ -101,6 +104,10 @@ export default {
     unbind(item) {
       // 实现解绑逻辑
       this.$router.push({path: '/v1/bot/edit', query: {self_id: item["self_id"]}});
+    },
+    bot_setting(item) {
+      // 实现解绑逻辑
+      this.$router.push({path: '/v1/bot/setting', query: {self_id: item["self_id"]}});
     },
     viewDetails(item) {
       // 实现查看详情逻辑

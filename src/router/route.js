@@ -49,7 +49,10 @@ const routes = [
     path: '/v1/bot/edit',
     component: () => import('@/views/v1/bot/subpage/edit.vue'),
   },
-
+  {
+    path: '/v1/bot/setting',
+    component: () => import('@/views/v1/bot/subpage/setting.vue'),
+  },
   {
     path: '/v1/group/edit',
     component: () => import('@/views/v1/group/subpage/edit.vue'),
