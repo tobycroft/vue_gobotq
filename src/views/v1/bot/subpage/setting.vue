@@ -10,16 +10,18 @@
             v-model="formData[field.key]"
             readonly
           ></v-text-field>
-          <v-radio-group
-            v-else-if="field.type === 'radio'"
-            v-model="formData[field.key]"
-            :label="field.label"
-            :row="false"
-          >
-            <v-radio :label="option.value" :value="option.value" v-for="option in field.options" :key="option.value">
-              {{ option.text }}
-            </v-radio>
-          </v-radio-group>
+
+          <v-row v-else-if="field.type === 'radio'" :key="field.key" cols="12">
+            {{ field.label }}：
+            <v-col v-for="option in field.options" :key="option.value" cols="12">
+              <v-radio
+                :label="option.text"
+                :value="option.value"
+                v-model="formData[field.key]"
+                class="ma-2"
+              ></v-radio>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
 
@@ -46,9 +48,19 @@ export default {
         id: null
       },
       fields: [
-        {key: 'self_id', label: '自身ID', type: 'text'},
-        {key: 'add_friend', label: '是否允许添加好友', type: 'radio', options: [{value: -1, text: '禁止所有人添加'}, {value: 0, text: '根据白名单列表'}, {value: 1, text: '允许所有人添加'}]},
-        {key: 'add_group', label: '是否允许被拉到群中', type: 'radio', options: [{value: -1, text: '禁止所有人添加'}, {value: 0, text: '根据白名单列表'}, {value: 1, text: '允许所有人添加'}]},
+        // {key: 'self_id', label: '自身ID', type: 'text'},
+        {
+          key: 'add_friend',
+          label: '是否允许添加好友',
+          type: 'radio',
+          options: [{value: -1, text: '禁止所有人添加'}, {value: 0, text: '根据白名单列表'}, {value: 1, text: '允许所有人添加'}]
+        },
+        {
+          key: 'add_group',
+          label: '是否允许被拉到群中',
+          type: 'radio',
+          options: [{value: -1, text: '禁止所有人添加'}, {value: 0, text: '根据白名单列表'}, {value: 1, text: '允许所有人添加'}]
+        },
         // {key: 'change_date', label: '修改日期', type: 'date'},
         // {key: 'date', label: '日期', type: 'date'},
         // {key: 'id', label: 'ID', type: 'text'}
@@ -58,7 +70,7 @@ export default {
   methods: {
     async submitForm() {
       // 这里调用你自己的提交方法，并将 this.formData 传递给它
-      var ret = await new Net("/your-api-endpoint").PostFormData(this.formData);
+      var ret = await new Net("/v1/bot/setting/edit").PostFormData(this.formData);
       if (ret.isSuccess) {
         Alert.SetAlert(ret.echo);
         this.$router.go(-1);
@@ -71,14 +83,13 @@ export default {
     },
     async fillForm() {
       // 直接将提供的 JSON 数据回填到表单中
-      this.formData = {
-        self_id: 1206420783,
-        add_friend: 0,
-        add_group: 0,
-        change_date: "2023-11-25T13:16:58+08:00",
-        date: "2023-11-25T13:16:58+08:00",
-        id: 1
-      };
+      var ret = await new Net("/v1/bot/setting/get").PostFormData(this.$route.query);
+      if (ret.isSuccess) {
+        this.formData = ret.data;
+      } else {
+        Alert.SetAlert(ret.echo);
+      }
+
     }
   },
   mounted() {
